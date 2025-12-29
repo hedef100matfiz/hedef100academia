@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hedef100Academia v9.5 - Premium Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            800: '#1e293b',
+                            900: '#0f172a',
+                            950: '#020617'
+                        },
+                        brand: '#f97316'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; transition: background-color 0.3s ease; overflow-x: hidden; }
+        
+        /* Premium Intro Animations */
+        @keyframes intro-pulse {
+            0% { opacity: 0; transform: scale(0.9); filter: blur(10px); letter-spacing: -0.05em; }
+            40% { opacity: 1; transform: scale(1.02); filter: blur(0px); letter-spacing: 0.05em; }
+            70% { opacity: 1; transform: scale(1); filter: blur(0px); letter-spacing: 0.1em; }
+            100% { opacity: 0; transform: scale(1.1); filter: blur(5px); letter-spacing: 0.15em; }
+        }
+
+        @keyframes shimmer-glow {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .animate-premium-intro {
+            animation: intro-pulse 3.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .text-premium-shimmer {
+            background: linear-gradient(90deg, #f97316 0%, #fbbf24 25%, #fff 50%, #fbbf24 75%, #f97316 100%);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shimmer-glow 2.5s linear infinite;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .dark .glass-card {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        .dark ::-webkit-scrollbar-thumb { background: #475569; }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "recharts": "https://esm.sh/recharts@3.6.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3"
+  }
+}
+</script>
+</head>
+<body class="bg-slate-50 dark:bg-navy-900 text-slate-900 dark:text-slate-100 min-h-screen">
+    <div id="root"></div>
+</body>
+</html>
