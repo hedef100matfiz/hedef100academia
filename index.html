@@ -55,7 +55,7 @@
         // --- 1. DEĞİŞKEN TANIMLARI (Import yerine bu kullanılır) ---
         const { useState, useEffect, useMemo } = React;
         
-        // Recharts'ı güvenli bir şekilde alıyoruz
+        // Recharts'ı güvenli bir şekilde alıyoruz (Hata önleyici)
         const RechartsLib = window.Recharts || Recharts;
         const { 
             LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, 
@@ -368,4 +368,65 @@
                                                     <h4 className="text-gray-500 text-sm">Koç</h4>
                                                     <p className="text-2xl font-bold">{user.coachId ? "Atandı" : "Aranıyor"}</p>
                                                 </Card>
-                                                <Card
+                                                <Card className="border-l-4 border-purple-500">
+                                                    <h4 className="text-gray-500 text-sm">Ortalama Net</h4>
+                                                    <p className="text-2xl font-bold">78.5</p>
+                                                </Card>
+                                            </div>
+                                            
+                                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                                <Card>
+                                                    <h3 className="text-lg font-bold mb-4">Haftalık Net Değişimi</h3>
+                                                    <div className="h-64 w-full">
+                                                        <ResponsiveContainer width="100%" height="100%">
+                                                            <LineChart data={[{name:'Pzt', net:40}, {name:'Sal', net:45}, {name:'Çar', net:55}, {name:'Per', net:52}, {name:'Cum', net:60}]}>
+                                                                <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
+                                                                <XAxis dataKey="name" stroke="#94a3b8" />
+                                                                <YAxis stroke="#94a3b8" />
+                                                                <Tooltip contentStyle={{backgroundColor: '#1e293b', border: 'none', color: '#fff'}} />
+                                                                <Line type="monotone" dataKey="net" stroke="#f97316" strokeWidth={3} />
+                                                            </LineChart>
+                                                        </ResponsiveContainer>
+                                                    </div>
+                                                </Card>
+                                                <Card>
+                                                    <h3 className="text-lg font-bold mb-4">Ders Analizi</h3>
+                                                    <div className="h-64 w-full">
+                                                        <ResponsiveContainer width="100%" height="100%">
+                                                            <RadarChart outerRadius={90} data={[{subject: 'Mat', A: 120, fullMark: 150}, {subject: 'Fiz', A: 98, fullMark: 150}, {subject: 'Kim', A: 86, fullMark: 150}, {subject: 'Bio', A: 99, fullMark: 150}, {subject: 'Geo', A: 85, fullMark: 150}]}>
+                                                                <PolarGrid stroke="#334155" />
+                                                                <PolarAngleAxis dataKey="subject" stroke="#94a3b8" />
+                                                                <PolarRadiusAxis angle={30} domain={[0, 150]} stroke="none" />
+                                                                <Radar name="Sen" dataKey="A" stroke="#f97316" fill="#f97316" fillOpacity={0.6} />
+                                                            </RadarChart>
+                                                        </ResponsiveContainer>
+                                                    </div>
+                                                </Card>
+                                            </div>
+                                        </>
+                                    )}
+
+                                    {user.role === 'teacher' && (
+                                        <Card>
+                                            <h3 className="text-xl font-bold mb-4">🎓 Öğretmen Paneli ({user.branch})</h3>
+                                            <p className="text-gray-500">Şu an aktif koçluk yaptığınız öğrenci yok. Öğrenciler sizi "Koç Bul" sayfasında <b>{user.branch}</b> öğretmeni olarak görecekler.</p>
+                                            <div className="mt-4 p-4 bg-gray-100 dark:bg-navy-900 rounded">
+                                                <h4 className="font-bold">Admin'e Mesaj Gönder:</h4>
+                                                <textarea className="w-full mt-2 p-2 rounded dark:bg-navy-800 dark:text-white" placeholder="Bir isteğiniz var mı?"></textarea>
+                                                <Button className="mt-2" variant="secondary">Gönder</Button>
+                                            </div>
+                                        </Card>
+                                    )}
+                                </div>
+                            )}
+                        </main>
+                    </div>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
